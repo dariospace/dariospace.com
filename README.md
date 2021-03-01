@@ -32,3 +32,4 @@ Create a Table Page in Notion and Copy the page ID for the Post page and paste i
 - [ ] Add option to subscribe with Buttondown
 - [ ] Add Unsplash photos to home
 - [ ] Create posts in Notion
+- [ ] Move head metada to component

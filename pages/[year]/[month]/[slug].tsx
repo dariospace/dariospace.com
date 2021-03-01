@@ -56,6 +56,16 @@ const BlogPost: FC<{ recordMap: ExtendedRecordMap; post: Post; pagination: Pagin
     <>
       <Head>
         <title>{post.name} - Dario Space</title>
+        <meta name="robots" content="follow, index" />
+        <meta content={post.name} name="description" />
+        <meta property="og:site_name" content="Dario Space" />
+        <meta property="og:description" content={post.name} />
+        <meta property="og:title" content={post.name} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@leeerob" />
+        <meta name="twitter:title" content={post.name} />
+        <meta name="twitter:description" content={post.name} />
+        {post.date && <meta property="article:published_time" content={new Date(post.date).toLocaleDateString()} />}
       </Head>
       <div className="min-h-screen flex flex-col">
         <div className="container ml-0 mr-auto px-6 justify-center flex-grow max-w-4xl">
@@ -67,43 +77,46 @@ const BlogPost: FC<{ recordMap: ExtendedRecordMap; post: Post; pagination: Pagin
               </a>
             </Link>
           </nav>
-
-          <div className="my-16 ml-0 mr-auto max-w-3xl">
-            <div className="mb-12 text-left">
-              <div className="text-3xl font-bold mb-3">{post.name}</div>
-              <div className="text-sm text-gray-400 flex flex-nowrap justify-left items-center space-x-2 overflow-hidden">
-                <CalendarOutline size={16} className="flex-shrink-0" />
-                <span className="flex-shrink-0">{new Date(post.date).toLocaleDateString()} · </span>
-                {post.author.map(author => (
-                  <div key={author.id} className="flex items-center space-x-1 flex-shrink-0">
-                    <img src={author.profilePhoto} alt="profile photo" className="w-6 h-6 rounded-full" />
-                    <span className="hidden md:block">{author.fullName}</span>
-                  </div>
-                ))}
+          <article>
+            <div className="my-16 ml-0 mr-auto max-w-3xl">
+              <div className="mb-12 text-left">
+                <div className="text-3xl font-bold mb-3">
+                  <h2>{post.name}</h2>
+                </div>
+                <div className="text-sm text-gray-400 flex flex-nowrap justify-left items-center space-x-2 overflow-hidden">
+                  <CalendarOutline size={16} className="flex-shrink-0" />
+                  <time className="flex-shrink-0">{new Date(post.date).toLocaleDateString()} · </time>
+                  {post.author.map(author => (
+                    <div key={author.id} className="flex items-center space-x-1 flex-shrink-0">
+                      <img src={author.profilePhoto} alt="profile photo" className="w-6 h-6 rounded-full" />
+                      <span className="hidden md:block author byline">{author.fullName}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="overflow-hidden">
+                <NotionRenderer recordMap={recordMap} />
+              </div>
+              <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-600">
+                {pagination.prev && (
+                  <Link href="/[year]/[month]/[slug]" as={formatSlug(pagination.prev.date, pagination.prev.slug)}>
+                    <a className="p-3 border-2 hover:bg-gray-50 flex items-center justify-between space-x-2">
+                      <ChevronLeftOutline size={20} />
+                      <span>{pagination.prev?.name}</span>
+                    </a>
+                  </Link>
+                )}
+                {pagination.next && (
+                  <Link href="/[year]/[month]/[slug]" as={formatSlug(pagination.next.date, pagination.next.slug)}>
+                    <a className="p-3 border-2 hover:bg-gray-50 flex items-center justify-between space-x-2">
+                      <span>{pagination.next?.name}</span>
+                      <ChevronRightOutline size={20} />
+                    </a>
+                  </Link>
+                )}
               </div>
             </div>
-            <div className="overflow-hidden">
-              <NotionRenderer recordMap={recordMap} />
-            </div>
-            <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-600">
-              {pagination.prev && (
-                <Link href="/[year]/[month]/[slug]" as={formatSlug(pagination.prev.date, pagination.prev.slug)}>
-                  <a className="p-3 border-2 hover:bg-gray-50 flex items-center justify-between space-x-2">
-                    <ChevronLeftOutline size={20} />
-                    <span>{pagination.prev?.name}</span>
-                  </a>
-                </Link>
-              )}
-              {pagination.next && (
-                <Link href="/[year]/[month]/[slug]" as={formatSlug(pagination.next.date, pagination.next.slug)}>
-                  <a className="p-3 border-2 hover:bg-gray-50 flex items-center justify-between space-x-2">
-                    <span>{pagination.next?.name}</span>
-                    <ChevronRightOutline size={20} />
-                  </a>
-                </Link>
-              )}
-            </div>
-          </div>
+          </article>
         </div>
         <Footer />
       </div>
