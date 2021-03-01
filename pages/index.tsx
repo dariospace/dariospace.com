@@ -34,15 +34,23 @@ export const getAllPosts = async (): Promise<Post[]> => {
 
 export const getStaticProps = async () => {
   const posts = (await getAllPosts()).filter(p => p.published)
+  if (!posts) {
+    return {
+      notFound: true
+    }
+  }
   return {
     props: {
       posts
     },
-    revalidate: 1
+    revalidate: 5
   }
 }
 
 const HomePage = ({ posts }: { posts: Post[] }) => {
+  if (!posts) {
+    return null
+  }
   return (
     <>
       <Head>

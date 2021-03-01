@@ -4,7 +4,8 @@ import Link from 'next/link'
 import { NotionAPI } from 'notion-client'
 import { ExtendedRecordMap } from 'notion-types'
 import { FC } from 'react'
-import { NotionRenderer } from 'react-notion-x'
+// core notion renderer
+import { NotionRenderer, Code, Collection } from 'react-notion-x'
 import { getAllPosts, Post } from '../..'
 import Footer from '../../../components/Footer'
 import { formatSlug } from '../../../utils/slugFormat'
@@ -95,7 +96,14 @@ const BlogPost: FC<{ recordMap: ExtendedRecordMap; post: Post; pagination: Pagin
                 </div>
               </div>
               <div className="overflow-hidden">
-                <NotionRenderer recordMap={recordMap} />
+                <NotionRenderer
+                  recordMap={recordMap}
+                  fullPage={false}
+                  components={{
+                    code: Code,
+                    collection: Collection
+                  }}
+                />
               </div>
               <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-600">
                 {pagination.prev && (
