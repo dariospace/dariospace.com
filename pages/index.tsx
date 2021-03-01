@@ -57,7 +57,7 @@ const HomePage = ({ posts }: { posts: Post[] }) => {
             <div className="mt-8 text-2xl font-bold">Dario Spaceman</div>
             <div className="mt-8">
               I am Dario. I own a recycling company: Compost Compost. I teach meditation for stressed startups at
-              Meditaon. I am learning full stack development for fun. Open for work and side projects.
+              Meditaon.
             </div>
             <div className="mt-2 flex items-center space-x-2">
               <a
