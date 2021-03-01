@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.cnpmjs.org/css2?family=Inter:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.cnpmjs.org/css2?family=Roboto:wght@400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.notion,
+.notion-text,
+.notion-quote,
+.notion-list,
+.notion-h-title {
+  @apply leading-7;
+  @apply font-sans;
+}
+.notion-bookmark {
+  @apply border-2;
+  @apply border-gray-100;
+}
+.notion-bookmark:hover {
+  @apply border-blue-400;
+}
+.notion-viewport {
+  z-index: -10;
+}

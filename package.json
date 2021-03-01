@@ -1,0 +1,60 @@
+{
+  "name": "dariospace.com",
+  "description": "My personal website.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Dario Space",
+    "email": "dariospaceman@gmail.com",
+    "url": "https://dariospace.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dariospace/dariospace.com.git"
+  },
+  "scripts": {
+    "build": "next build",
+    "dev": "next",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@badrap/bar-of-progress": "^0.1.2",
+    "disqus-react": "^1.0.11",
+    "feed": "^4.2.2",
+    "heroicons-react": "^1.3.0",
+    "next": "^10.0.7",
+    "notion-client": "^4.2.20",
+    "notion-types": "^4.2.20",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-notion-x": "^4.2.23"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.31",
+    "@types/react": "^17.0.2",
+    "@types/react-dom": "^17.0.1",
+    "@typescript-eslint/eslint-plugin": "^4.15.2",
+    "@typescript-eslint/parser": "^4.15.2",
+    "autoprefixer": "^10.2.4",
+    "eslint": "^7.20.0",
+    "eslint-config-prettier": "^8.0.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-promise": "^4.3.1",
+    "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "postcss": "^8.2.6",
+    "prettier": "^2.2.1",
+    "tailwindcss": "^2.0.3",
+    "typescript": "^4.1.5"
+  },
+  "prettier": {
+    "arrowParens": "always",
+    "singleQuote": true,
+    "tabWidth": 2,
+    "printWidth": 120,
+    "trailingComma": "none"
+  }
+}
