@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { NotionAPI } from 'notion-client'
 import { ExtendedRecordMap } from 'notion-types'
 import { FC } from 'react'
-import { Code, Equation, NotionRenderer } from 'react-notion-x'
+import { NotionRenderer } from 'react-notion-x'
 import { getAllPosts, Post } from '../..'
 import Footer from '../../../components/Footer'
 import { formatSlug } from '../../../utils/slugFormat'
@@ -82,11 +82,9 @@ const BlogPost: FC<{ recordMap: ExtendedRecordMap; post: Post; pagination: Pagin
                 ))}
               </div>
             </div>
-
             <div className="overflow-hidden">
-              <NotionRenderer recordMap={recordMap} components={{ code: Code, equation: Equation }} />
+              <NotionRenderer recordMap={recordMap} />
             </div>
-
             <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-600">
               {pagination.prev && (
                 <Link href="/[year]/[month]/[slug]" as={formatSlug(pagination.prev.date, pagination.prev.slug)}>
@@ -107,7 +105,6 @@ const BlogPost: FC<{ recordMap: ExtendedRecordMap; post: Post; pagination: Pagin
             </div>
           </div>
         </div>
-
         <Footer />
       </div>
     </>
