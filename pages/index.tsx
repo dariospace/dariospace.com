@@ -55,6 +55,10 @@ const HomePage = ({ posts }: { posts: Post[] }) => {
               <Image className="rounded-full" src="/images/dario.jpg" alt="pic" width="100%" height="100%" />
             </div>
             <div className="mt-8 text-2xl font-bold">Dario Spaceman</div>
+            <div className="mt-8">
+              I am Dario. I own a recycling company: Compost Compost. I teach meditation for stressed startups at
+              Meditaon. I am learning full stack development for fun. Open for work and side projects.
+            </div>
             <div className="mt-2 flex items-center space-x-2">
               <a
                 href="https://dariospace.com"
@@ -98,7 +102,6 @@ const HomePage = ({ posts }: { posts: Post[] }) => {
                 </a>
               </Link>
             </div>
-
             <div className="mt-12 leading-loose flex flex-col space-y-4 -mx-4">
               {posts.map(
                 post =>
