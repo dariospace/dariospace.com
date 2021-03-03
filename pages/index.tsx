@@ -68,7 +68,7 @@ const HomePage = ({ posts }: { posts: Post[] }) => {
               {posts.map(
                 post =>
                   post.published && (
-                    <Link key={post.id} href="/[slug]" as={formatSlug(post.date, post.slug)}>
+                    <Link key={post.id} href="/[slug]" as={formatSlug(post.slug)}>
                       <a className="p-4 hover:bg-gray-50">
                         <div className="rounded-xl mb-2 px-2 py-1 text-blue-800 bg-blue-100 text-sm inline-block">
                           <div className="flex items-center space-x-1">

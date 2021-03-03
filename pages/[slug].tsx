@@ -99,7 +99,7 @@ const BlogPost: FC<{ recordMap: ExtendedRecordMap; post: Post; pagination: Pagin
               </div>
               <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-600">
                 {pagination.prev && (
-                  <Link href="/[slug]" as={formatSlug(pagination.prev.date, pagination.prev.slug)}>
+                  <Link href="/[slug]" as={formatSlug(pagination.prev.slug)}>
                     <a className="p-3 border-2 hover:bg-gray-50 flex items-center justify-between space-x-2">
                       <ChevronLeftOutline size={20} />
                       <span>{pagination.prev?.name}</span>
@@ -107,7 +107,7 @@ const BlogPost: FC<{ recordMap: ExtendedRecordMap; post: Post; pagination: Pagin
                   </Link>
                 )}
                 {pagination.next && (
-                  <Link href="/[slug]" as={formatSlug(pagination.next.date, pagination.next.slug)}>
+                  <Link href="/[slug]" as={formatSlug(pagination.next.slug)}>
                     <a className="p-3 border-2 hover:bg-gray-50 flex items-center justify-between space-x-2">
                       <span>{pagination.next?.name}</span>
                       <ChevronRightOutline size={20} />
@@ -127,7 +127,7 @@ const BlogPost: FC<{ recordMap: ExtendedRecordMap; post: Post; pagination: Pagin
 export const getStaticPaths = async () => {
   const table = (await getAllPosts()).filter(p => p.published)
   return {
-    paths: table.map(row => formatSlug(row.date, row.slug)),
+    paths: table.map(row => formatSlug(row.slug)),
     fallback: true
   }
 }
