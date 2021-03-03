@@ -24,8 +24,8 @@ export const generateRss = (posts: Post[]) => {
     if (post.published) {
       feed.addItem({
         title: post.name,
-        id: `${domain}${formatSlug(post.date, post.slug)}`,
-        link: `${domain}${formatSlug(post.date, post.slug)}`,
+        id: `${domain}${formatSlug(post.slug)}`,
+        link: `${domain}${formatSlug(post.slug)}`,
         description: post.preview,
         date: new Date(post.date)
       })
