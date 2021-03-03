@@ -5,10 +5,10 @@ import { NotionAPI } from 'notion-client'
 import { ExtendedRecordMap } from 'notion-types'
 import { FC } from 'react'
 // core notion renderer
-import { NotionRenderer, Code, Collection } from 'react-notion-x'
-import { getAllPosts, Post } from '../..'
-import Footer from '../../../components/Footer'
-import { formatSlug } from '../../../utils/slugFormat'
+import { NotionRenderer } from 'react-notion-x'
+import { getAllPosts, Post } from '.'
+import Footer from '../components/Footer'
+import { formatSlug } from '../utils/slugFormat'
 
 const notion = new NotionAPI()
 
@@ -29,8 +29,7 @@ export const getStaticProps = async ({ params: { slug } }: { params: { slug: str
     prev: postIndex - 1 >= 0 ? posts[postIndex - 1] : null,
     next: postIndex + 1 < posts.length ? posts[postIndex + 1] : null
   }
-
-  const recordMap = await notion.getPage(post!.id)
+  const recordMap = await notion.getPage(post.id)
 
   return {
     props: {
@@ -96,18 +95,11 @@ const BlogPost: FC<{ recordMap: ExtendedRecordMap; post: Post; pagination: Pagin
                 </div>
               </div>
               <div className="overflow-hidden">
-                <NotionRenderer
-                  recordMap={recordMap}
-                  fullPage={false}
-                  components={{
-                    code: Code,
-                    collection: Collection
-                  }}
-                />
+                <NotionRenderer recordMap={recordMap} fullPage={false} />
               </div>
               <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-600">
                 {pagination.prev && (
-                  <Link href="/[year]/[month]/[slug]" as={formatSlug(pagination.prev.date, pagination.prev.slug)}>
+                  <Link href="/[slug]" as={formatSlug(pagination.prev.date, pagination.prev.slug)}>
                     <a className="p-3 border-2 hover:bg-gray-50 flex items-center justify-between space-x-2">
                       <ChevronLeftOutline size={20} />
                       <span>{pagination.prev?.name}</span>
@@ -115,7 +107,7 @@ const BlogPost: FC<{ recordMap: ExtendedRecordMap; post: Post; pagination: Pagin
                   </Link>
                 )}
                 {pagination.next && (
-                  <Link href="/[year]/[month]/[slug]" as={formatSlug(pagination.next.date, pagination.next.slug)}>
+                  <Link href="/[slug]" as={formatSlug(pagination.next.date, pagination.next.slug)}>
                     <a className="p-3 border-2 hover:bg-gray-50 flex items-center justify-between space-x-2">
                       <span>{pagination.next?.name}</span>
                       <ChevronRightOutline size={20} />
