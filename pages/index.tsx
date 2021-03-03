@@ -61,8 +61,19 @@ const HomePage = ({ posts }: { posts: Post[] }) => {
           <div className="my-16">
             <div className="mt-8 text-2xl font-bold">Dario Spaceman</div>
             <div className="mt-8">
-              I am Dario. I own a recycling company: Compost Compost. I teach meditation for stressed startups at
-              Meditaon.
+              I own a recycling company at
+              <Link href="https://grupoginebra.com">
+                <a>
+                  <div className="text-gray-600 mb-2">Compost Compost.</div>
+                </a>
+              </Link>
+              I teach meditation for stressed startups at
+              <Link href="http://meditaon.com">
+                <a>
+                  <div className="text-gray-600 mb-2">Meditaon.</div>
+                </a>
+              </Link>
+              <div>I write about books and experiments.</div>
             </div>
             <div className="mt-12 leading-loose flex flex-col space-y-4 -mx-4">
               {posts.map(
@@ -70,23 +81,19 @@ const HomePage = ({ posts }: { posts: Post[] }) => {
                   post.published && (
                     <Link key={post.id} href="/[slug]" as={formatSlug(post.slug)}>
                       <a className="p-4 hover:bg-gray-50">
-                        <div className="rounded-xl mb-2 px-2 py-1 text-blue-800 bg-blue-100 text-sm inline-block">
+                        <div className="rounded-xs mb-2 mr-2 px-2 py-1 text-blue-600 bg-blue-50 text-xs inline-block">
                           <div className="flex items-center space-x-1">
                             <TagOutline size={16} /> <span>{post.tag}</span>
                           </div>
                         </div>
+                        <div className="rounded-xs mb-2 mr-2 px-2 py-1 text-gray-600 bg-gray-50 text-xs inline-block">
+                          <div className="flex items-center space-x-1">
+                            <CalendarOutline size={16} className="flex-shrink-0" />
+                            <time className="flex-shrink-0">{new Date(post.date).toLocaleDateString('es-AR')}</time>
+                          </div>
+                        </div>
                         <div className="font-bold text-xl mb-1">{post.name}</div>
                         <div className="text-sm text-gray-400 mb-2">{post.preview}</div>
-                        <div className="text-sm text-gray-400 flex flex-nowrap items-center space-x-2 overflow-hidden">
-                          <CalendarOutline size={16} className="flex-shrink-0" />
-                          <span className="flex-shrink-0">{new Date(post.date).toLocaleDateString()}</span>
-                          {post.author.map(author => (
-                            <div key={author.id} className="flex items-center space-x-1 flex-shrink-0">
-                              <img src={author.profilePhoto} alt="profile photo" className="w-6 h-6 rounded-full" />
-                              <span className="hidden md:block">{author.fullName}</span>
-                            </div>
-                          ))}
-                        </div>
                       </a>
                     </Link>
                   )

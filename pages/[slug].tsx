@@ -62,10 +62,12 @@ const BlogPost: FC<{ recordMap: ExtendedRecordMap; post: Post; pagination: Pagin
         <meta property="og:description" content={post.name} />
         <meta property="og:title" content={post.name} />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@leeerob" />
+        <meta name="twitter:site" content="@dariospace" />
         <meta name="twitter:title" content={post.name} />
         <meta name="twitter:description" content={post.name} />
-        {post.date && <meta property="article:published_time" content={new Date(post.date).toLocaleDateString()} />}
+        {post.date && (
+          <meta property="article:published_time" content={new Date(post.date).toLocaleDateString('es-AR')} />
+        )}
       </Head>
       <div className="min-h-screen flex flex-col">
         <div className="container ml-0 mr-auto px-6 justify-center flex-grow max-w-4xl">
@@ -85,10 +87,10 @@ const BlogPost: FC<{ recordMap: ExtendedRecordMap; post: Post; pagination: Pagin
                 </div>
                 <div className="text-sm text-gray-400 flex flex-nowrap justify-left items-center space-x-2 overflow-hidden">
                   <CalendarOutline size={16} className="flex-shrink-0" />
-                  <time className="flex-shrink-0">{new Date(post.date).toLocaleDateString()} · </time>
+                  <time className="flex-shrink-0">{new Date(post.date).toLocaleDateString('es-AR')} · </time>
                   {post.author.map(author => (
                     <div key={author.id} className="flex items-center space-x-1 flex-shrink-0">
-                      <img src={author.profilePhoto} alt="profile photo" className="w-6 h-6 rounded-full" />
+                      <img src={author.profilePhoto} alt="profile photo" className="w-6 h-6 rounded-sm" />
                       <span className="hidden md:block author byline">{author.fullName}</span>
                     </div>
                   ))}
